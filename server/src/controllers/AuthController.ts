@@ -5,7 +5,7 @@ import prisma from "../config/db.config.js";
 interface LoginPayloadType {
   name: string;
   email: string;
-  oauthId: string;
+  oauth_id: string;
   provider: string;
   image?: string;
 }
@@ -31,7 +31,7 @@ class AuthController {
           provider: body.provider,
         };
         const token = jwt.sign(tokenPayload, process.env.JWT_SECRET as string, {
-          expiresIn: "1h",
+          expiresIn: "1d",
         });
         return res.status(201).json({
           message: "User Created!",
@@ -45,7 +45,7 @@ class AuthController {
         provider: body.provider,
       };
       const token = jwt.sign(tokenPayload, process.env.JWT_SECRET as string, {
-        expiresIn: "1h",
+        expiresIn: "1d",
       });
       return res.status(200).json({
         message: "User Logged in!",

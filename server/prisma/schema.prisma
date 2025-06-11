@@ -14,14 +14,38 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User{
-  id Int @id @default(autoincrement())
-  name String @db.VarChar(191)
-  email String @unique @db.VarChar(191)
-  image String? 
-  provider String @db.VarChar(191)
-  oauthId String @unique @db.VarChar(191)
-  createdAt DateTime @default(now())
+model User {
+  id         Int         @id @default(autoincrement())
+  name       String      @db.VarChar(191)
+  email      String      @unique @db.VarChar(191)
+  image      String?
+  provider   String      @db.VarChar(191)
+  oauth_id   String      @unique @db.VarChar(191)
+  created_at DateTime    @default(now())
+  ChatGroup  ChatGroup[]
 
   @@map("users")
+}
+
+model ChatGroup {
+  id         String       @id @default(uuid()) @db.Uuid
+  user       User         @relation(fields: [user_id], references: [id])
+  user_id    Int
+  title      String       @db.VarChar(191)
+  created_at DateTime     @default(now())
+  passcode   String?      @db.VarChar(191)
+  GroupUsers GroupUsers[]
+
+  @@index([created_at])
+  @@map("chat_groups")
+}
+
+model GroupUsers {
+  id         Int       @id @default(autoincrement())
+  group      ChatGroup @relation(fields: [group_id], references: [id])
+  group_id   String    @db.Uuid
+  name       String    @db.VarChar(191)
+  created_at DateTime  @default(now())
+
+  @@map("group_users")
 }
