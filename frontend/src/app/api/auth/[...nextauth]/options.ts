@@ -35,7 +35,7 @@ export const authOptions: AuthOptions = {
         const payload = {
           email: user.email!,
           name: user.name!,
-          oauthId: account?.providerAccountId!,
+          oauth_id: account?.providerAccountId!,
           provider: account?.provider!,
           image: user?.image,
         };
