@@ -1,8 +1,5 @@
 "use client";
 import React from "react";
-import Link from "next/link";
-import { CustomUser } from "@/app/api/auth/[...nextauth]/options";
-import { Button } from "../ui/button";
 import ProfileMenu from "../auth/ProfileMenu";
 
 export default function DashNav({
