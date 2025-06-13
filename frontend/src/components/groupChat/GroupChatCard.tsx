@@ -35,7 +35,7 @@ const GroupChatCard = ({
           <p>Link to the room: </p>
         </CardContent>
         <CardFooter>
-          <p>{`${Env.APP_URL}/${group?.id}`}</p>
+          <p>{`${Env.APP_URL}/chat/${group?.id}`}</p>
         </CardFooter>
       </Card>
     </>
