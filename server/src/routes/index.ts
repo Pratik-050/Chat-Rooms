@@ -18,7 +18,7 @@ router.put("/chat-group/:id", AuthMiddleware, ChatGroupController.update); // Up
 router.delete("/chat-group/:id", AuthMiddleware, ChatGroupController.delete); // Delete a chat group
 
 // Chat Group Users Routes
-router.get("/chat-group-users", ChatGroupUsersController.index); // List all users in a chat group
+router.get("/chat-group-users/:id", ChatGroupUsersController.index); // List all users in a chat group
 router.post("/chat-group-users", ChatGroupUsersController.store); // Create a new chat group user(not protected, as user don't need to login to chat in a group)
 
 // Chat Messages Routes

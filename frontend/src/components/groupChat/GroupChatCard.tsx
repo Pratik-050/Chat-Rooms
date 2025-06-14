@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import {
   Card,
@@ -11,6 +12,8 @@ import DeleteChat from "./DeleteChat";
 import { CustomUser } from "@/app/api/auth/[...nextauth]/options";
 import Env from "@/lib/env";
 import EditChat from "./EditChat";
+import { Button } from "../ui/button";
+import { toast } from "sonner";
 
 const GroupChatCard = ({
   user,
@@ -19,6 +22,10 @@ const GroupChatCard = ({
   user: CustomUser;
   group: ChatGroupType;
 }) => {
+  const handleCopy = () => {
+    navigator.clipboard?.writeText(`${Env.APP_URL}/chat/${group.id}`);
+    toast.success("Link copied successfully!");
+  };
   return (
     <>
       <Card>
@@ -32,10 +39,12 @@ const GroupChatCard = ({
           </div>
         </CardHeader>
         <CardContent>
-          <p>Link to the room: </p>
+          <p>Link to the room (click to copy): </p>
         </CardContent>
         <CardFooter>
-          <p>{`${Env.APP_URL}/chat/${group?.id}`}</p>
+          <Button variant="ghost" className="w-full" onClick={handleCopy}>
+            <p>{`${Env.APP_URL}/chat/${group?.id}`}</p>
+          </Button>
         </CardFooter>
       </Card>
     </>

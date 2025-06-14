@@ -9,7 +9,10 @@ interface ChatGroupUser {
 class ChatGroupUsersController {
   static async index(req: Request, res: Response) {
     try {
-      const { id } = req.query;
+      const { id } = req.params;
+      if (!id) {
+        return res.status(400).json({ message: "Group ID is required" });
+      }
       const users = await prisma.groupUsers.findMany({
         where: {
           group_id: id as string,

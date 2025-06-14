@@ -2,7 +2,7 @@ import { CHAT_GROUP_USERS_URL } from "@/lib/apiEndPoints";
 
 export async function fetchChatGroupUsers(id: string) {
   try {
-    const res = await fetch(`${CHAT_GROUP_USERS_URL}?group_id=${id}`, {
+    const res = await fetch(`${CHAT_GROUP_USERS_URL}/${id}`, {
       cache: "no-cache",
     });
 

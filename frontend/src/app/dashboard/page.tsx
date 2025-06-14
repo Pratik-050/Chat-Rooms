@@ -27,7 +27,7 @@ const dashboard = async () => {
             <GroupChatCard group={item} key={index} user={session?.user!} />
           ))
         ) : (
-          <p>No groups found...</p>
+          <p className="font-bold text-xl text-center">No groups found...</p>
         )}
       </div>
     </>

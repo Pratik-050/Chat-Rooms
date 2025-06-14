@@ -19,7 +19,7 @@ const defaultProps = {};
 const LoginModal = () => {
   const handleLogin = () => {
     signIn("google", {
-      callback: "/dashboard",
+      callbackUrl: "/dashboard",
       redirect: true,
     });
   };
