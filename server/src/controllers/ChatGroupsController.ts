@@ -41,12 +41,14 @@ class ChatGroupController {
   static async show(req: Request, res: Response) {
     try {
       const { id } = req.params;
-      await prisma.chatGroup.findUnique({
+      const data = await prisma.chatGroup.findUnique({
         where: {
           id: id,
         },
       });
-      res.status(200).json({ message: "Chat group fetched successfully!" });
+      res
+        .status(200)
+        .json({ message: "Chat group fetched successfully!", data: data });
     } catch (error) {
       console.error("Error fetching chat group:", error);
       return res.status(500).json({ message: "Internal server error" });
