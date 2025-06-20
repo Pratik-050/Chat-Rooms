@@ -4,7 +4,7 @@ import { fetchChatGroup } from "@/fetch/groupFetch";
 import { fetchChatGroupUsers } from "@/fetch/usersFetch";
 import React from "react";
 
-const chat = async ({ params }: { params: { id: string } }) => {
+const chat = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params;
   if (id.length !== 36) {
     throw new Error("Invalid chat group ID");
